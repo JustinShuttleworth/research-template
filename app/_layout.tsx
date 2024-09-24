@@ -1,11 +1,11 @@
 // app/_layout.tsx
-import { Stack } from "expo-router"
+import { Slot } from "expo-router"
 import "../global.css"
 
 export default function RootLayout() {
   return (
-    <Stack>
-      <Stack.Screen name='index' />
-    </Stack>
+    // <AuthProvider>  use layouts to wrap the directory and it's children in a provider
+      <Slot />
+    // </AuthProvider>
   )
 }
