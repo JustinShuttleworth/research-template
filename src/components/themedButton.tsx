@@ -16,6 +16,7 @@ interface ThemedButtonProps {
   onPress?: (event: GestureResponderEvent) => void
   disabled?: boolean
   loading?: boolean
+  className?: string
   children: React.ReactNode
   // Add any other props you might need
 }
@@ -38,6 +39,7 @@ const ThemedButton: React.FC<ThemedButtonProps> = ({
   disabled = false,
   loading = false,
   children,
+  className,
   ...props
 }) => {
   return (
@@ -47,7 +49,8 @@ const ThemedButton: React.FC<ThemedButtonProps> = ({
       className={clsx(
         "px-4 py-2 rounded-md items-center justify-center",
         variantStyles[variant],
-        disabled && "opacity-50"
+        disabled && "opacity-50",
+        className
       )}
       {...props}
     >

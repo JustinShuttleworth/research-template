@@ -1,21 +1,35 @@
 import ThemedButton from "@components/themedButton"
+import ThemedText from "@components/themedText"
 import { useAppLocalSearchParams } from "@hooks/useAppLocalSearchParams"
-import { Link } from "expo-router"
+import { useRouter } from "expo-router"
 
-import { Text, View } from "react-native"
+import { View } from "react-native"
 import { useDetail } from "src/context/detailProvider"
 
 export default function InspectionDetail() {
+  const router = useRouter()
   const { inspectionId } = useAppLocalSearchParams()
   const { inspectionId: detailProviderInspectionId } = useDetail()
 
   return (
-    <View className='flex-1 items-center justify-center'>
-      <Text>Inspection Id: {inspectionId}</Text>
-      <Text>Detail Provider Inspection Id: {detailProviderInspectionId}</Text>
-      <Link href={"/"} asChild>
-        <ThemedButton>Back Home</ThemedButton>
-      </Link>
+    <View>
+      <ThemedText variant='title' className='pb-4'>
+        Inspection Detail
+      </ThemedText>
+      <ThemedText>Inspection Id: {inspectionId}</ThemedText>
+      <ThemedText className='pb-4'>
+        Detail Provider Inspection Id: {detailProviderInspectionId}
+      </ThemedText>
+
+      <ThemedButton
+        className='mb-4'
+        onPress={() => router.navigate("1234/nav-stop-gap")}
+      >
+        Navigate to APEX (Inside of React Navigation)
+      </ThemedButton>
+      <ThemedButton variant='secondary' onPress={() => router.push("")}>
+        Back Home
+      </ThemedButton>
     </View>
   )
 }
