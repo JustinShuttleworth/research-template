@@ -7,47 +7,35 @@ import ApexScreen from "src/screens/Apex"
 import VirtualLiftScreen from "src/screens/VirtualLift"
 import { View } from "react-native"
 
+// Initializes a native stack navigator, enabling stack-based navigation (e.g., push/pop screens).
 const Stack = createNativeStackNavigator()
 
-const ComponentWapper = ({ children }) => {
-  return <View className='flex-1 dark:bg-zinc-900'>{children}</View>
-}
-
-const _ApexScreen = () => {
-  return (
-    <ComponentWapper>
-      <ApexScreen />
-    </ComponentWapper>
+// A higher-order component designed to provide base container styling to the react-navigation screens.
+// @ts-ignore
+const withStyles = Component => props =>
+  (
+    <View className='flex-1 dark:bg-zinc-900'>
+      <Component {...props} />
+    </View>
   )
-}
 
-const _VirtualLiftScreen = () => {
-  return (
-    <ComponentWapper>
-      <VirtualLiftScreen />
-    </ComponentWapper>
-  )
-}
-
+// This navigation wrapper represents Ice Breakers current navigation structure.
 export default function ReactNavigationWrapper() {
   return (
-    // <View className='flex-1 md:p-8 lg:p-12'>
-    // {/* // independent is a prop that allows the navigation container to be used in a non-root context.  */}
-    // {/* independent drops the styles which is why the parent container is provided here. */}
+    // The "independent" param results in nested screens not inheriting the parent styling.
     <NavigationContainer independent>
       <Stack.Navigator initialRouteName='Apex'>
         <Stack.Screen
           name='Apex'
-          component={_ApexScreen}
+          component={withStyles(ApexScreen)}
           options={{ headerShown: false }}
         />
         <Stack.Screen
           name='VirtualLift'
-          component={_VirtualLiftScreen}
+          component={withStyles(VirtualLiftScreen)}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>
-    // </View>
   )
 }

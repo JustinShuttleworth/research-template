@@ -14,7 +14,7 @@ export default function Platform() {
         You are on a mobile device, therefore you are seeing the default index.tsx
         component.
       </ThemedText>
-      <ThemedButton onPress={() => router.push("")}>Return Home</ThemedButton>
+      <ThemedButton variant="secondary" onPress={() => router.push("")}>Return Home</ThemedButton>
     </View>
   )
 }

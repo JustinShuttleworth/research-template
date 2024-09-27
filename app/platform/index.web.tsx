@@ -13,7 +13,9 @@ export default function Platform() {
       <ThemedText>
         You are on the Web and therefore you are viewing the index.web.tsx component.
       </ThemedText>
-      <ThemedButton onPress={() => router.push("")}>Return Home</ThemedButton>
+      <ThemedButton variant='secondary' onPress={() => router.push("")}>
+        Return Home
+      </ThemedButton>
     </View>
   )
 }
